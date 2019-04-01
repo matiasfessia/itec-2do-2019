@@ -1,0 +1,31 @@
+<html>
+
+<head>
+  <title>Say Hello</title>
+  <style>
+    h1 {
+      color: red;
+    }
+  </style>
+</head>
+
+  <body>
+    <label>Nombre</label>
+    <input type="text" id="first-name" />
+    <button id="btn-say-hello">Saludar</button>
+    <h1 id="greeting"></h1>
+    <script>
+      const firstName = document.getElementById('first-name');
+      const btnSayHello = document.getElementById('btn-say-hello');
+      
+      // Definimos una funcion para hacer el saludo
+      const sayHello = function () {
+        document.getElementById('greeting').textContent = 'Hola ' + firstName.value;
+      }
+
+      // Linkea la funcion de saludar con el evento click sobre el boton
+      btnSayHello.addEventListener('click', sayHello);
+    </script>
+  </body>
+
+</html>
