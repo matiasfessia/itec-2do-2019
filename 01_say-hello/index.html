@@ -12,19 +12,37 @@
   <body>
     <label>Nombre</label>
     <input type="text" id="first-name" />
+    
+    <label>Apellido</label>
+    <input type="text" id="last-name" />
+
     <button id="btn-say-hello">Saludar</button>
+    <button id="btn-change-color">Cambiar de color</button>
     <h1 id="greeting"></h1>
     <script>
-      const firstName = document.getElementById('first-name');
-      const btnSayHello = document.getElementById('btn-say-hello');
-      
+      const
+        firstName = document.getElementById('first-name'),
+        lastName = document.getElementById('last-name'),
+        btnSayHello = document.getElementById('btn-say-hello'),
+        btnChangeColor = document.getElementById('btn-change-color'),
+        colors = ['red', 'blue', 'green', 'pink', 'black'];
+        
+        
+
       // Definimos una funcion para hacer el saludo
       const sayHello = function () {
-        document.getElementById('greeting').textContent = 'Hola ' + firstName.value;
+        document.getElementById('greeting').textContent = `Hola ${firstName.value}, ${lastName.value}`;
+      }
+
+      
+      const changeColor = function () {
+        const random = Math.floor((Math.random() * 5) + 1);
+        document.getElementById('greeting').style.color = colors[random];
       }
 
       // Linkea la funcion de saludar con el evento click sobre el boton
       btnSayHello.addEventListener('click', sayHello);
+      btnChangeColor.addEventListener('click', changeColor);
     </script>
   </body>
 
