@@ -1,0 +1,43 @@
+<html>
+
+<head>
+  <title>ToDo List</title>
+  <style></style>
+</head>
+
+  <body>
+    <label>Lista de tareas</label>
+    <ul id="list"></ul>
+    <input type="text" id="task-name" />
+    <button id="btn-add-task">Agregar tarea</button>
+    <button id="btn-pick-task">Pick</button>
+    <script>
+      const ul = document.getElementById('list');
+      const taskName = document.getElementById('task-name');      
+      const btnAddTask = document.getElementById('btn-add-task');
+      const btnPickTask = document.getElementById('btn-pick-task');
+      let counter = 0;
+
+      const addTask = function () {
+        const li = document.createElement('li');
+        li.appendChild(document.createTextNode(taskName.value));
+        taskName.value = '';
+        ul.appendChild(li);
+        // counter = counter + 1;
+        counter++;
+      }
+
+
+      const pickTask = function () {
+        const random = Math.floor((Math.random() * counter) + 1);
+        alert(`selecciono la tarea #${random}`);
+        //console.log(random);
+
+      }
+
+      btnAddTask.addEventListener('click', addTask);
+      btnPickTask.addEventListener('click', pickTask);
+    </script>
+  </body>
+
+</html>
