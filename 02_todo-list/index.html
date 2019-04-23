@@ -2,15 +2,42 @@
 
 <head>
   <title>ToDo List</title>
-  <style></style>
+  <style>
+    .message {
+      border: 1px red solid;
+      text-align: center;
+      width: 300px;
+      margin: 0 auto;
+      position: absolute;
+      top:30%;
+      left: 30%;
+      background: #ccc;
+    }
+    .overlay {
+      width: 100%;
+      height: 100%;
+      background: #f7f5f5;
+      opacity: 0.4;
+      position: absolute;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
 
   <body>
+    <div class="overlay hidden"></div>
+    <div class="message hidden">
+      <h3>selecciono la tarea ###</h3>
+    </div>
     <label>Lista de tareas</label>
     <ul id="list"></ul>
+
     <input type="text" id="task-name" />
     <button id="btn-add-task">Agregar tarea</button>
     <button id="btn-pick-task">Escoger una</button>
+
     <script>
       const ul = document.getElementById('list');
       const taskName = document.getElementById('task-name');      
@@ -34,12 +61,16 @@
       const pickTask = function () {
         let random = Math.floor((Math.random() * itemsIds.length));
         let elem = document.getElementById(itemsIds[random]);
-        alert(`selecciono la tarea ${elem.textContent}`);
+
+        //
+        document.getElementsByClassName('message')[0].classList.remove('hidden');
+        document.getElementsByClassName('overlay')[0].classList.remove('hidden');
+        
+        // alert(`selecciono la tarea ${elem.textContent}`);
         elem.remove();
         itemsIds.splice(random, 1);
         counter--;
         //console.log(random);
-
       }
 
       btnAddTask.addEventListener('click', addTask);
