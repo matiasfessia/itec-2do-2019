@@ -10,27 +10,34 @@
     <ul id="list"></ul>
     <input type="text" id="task-name" />
     <button id="btn-add-task">Agregar tarea</button>
-    <button id="btn-pick-task">Pick</button>
+    <button id="btn-pick-task">Escoger una</button>
     <script>
       const ul = document.getElementById('list');
       const taskName = document.getElementById('task-name');      
       const btnAddTask = document.getElementById('btn-add-task');
       const btnPickTask = document.getElementById('btn-pick-task');
       let counter = 0;
+      let itemsIds = [];
 
       const addTask = function () {
         const li = document.createElement('li');
         li.appendChild(document.createTextNode(taskName.value));
+        li.setAttribute('id', counter)
         taskName.value = '';
         ul.appendChild(li);
-        // counter = counter + 1;
+        itemsIds.push(counter);
         counter++;
+        console.log(itemsIds);
       }
 
 
       const pickTask = function () {
-        const random = Math.floor((Math.random() * counter) + 1);
-        alert(`selecciono la tarea #${random}`);
+        let random = Math.floor((Math.random() * itemsIds.length));
+        let elem = document.getElementById(itemsIds[random]);
+        alert(`selecciono la tarea ${elem.textContent}`);
+        elem.remove();
+        itemsIds.splice(random, 1);
+        counter--;
         //console.log(random);
 
       }
